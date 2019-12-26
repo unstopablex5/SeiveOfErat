@@ -1,0 +1,2 @@
+# SeiveOfErat
+finding prime numbers
