@@ -1,7 +1,5 @@
 import java.util.*;
 
-
-
 public class Seive {
 
 	public static void main(String[] args) {
@@ -11,15 +9,16 @@ public class Seive {
 		
 		Scanner sc = new Scanner(System.in);
 		int limit = sc.nextInt();
-		LinkedList list1 = linkedListGenerator(limit);
-		LinkedList list2 = multiple(list1);
-		display(list2);
-	
-	}
-	public static void display(LinkedList list) {
+		int [] prime = Prime.findPrime(limit);
+		for(int i = 0; i < prime.length; i++) {
+			System.out.print(prime[i] + " ");
+		}
 		
-		List prime = new ArrayList();
-		List composite = new ArrayList();
+	}
+	public static void display(LinkedList<Number> list) {
+		
+		List<Number> prime = new ArrayList<Number>();
+		List<Number> composite = new ArrayList<Number>();
 		
 		for(int i = 0; i < list.size(); i++) {
 			Number num = (Number)list.get(i);
@@ -48,45 +47,5 @@ public class Seive {
 				System.out.println();
 			}
 		}
-	}
-	
-	public static LinkedList multiple(LinkedList list) {
-
-		int i = 0;
-		
-		while(i < list.size()) {
-			int test = 0;
-			if(((Number) list.get(i)).getPrime() != -1) {
-				i++;
-				continue;
-			}else {
-				for(int j = i+1; j < list.size(); j++) {
-					Number num = (Number)list.get(j);
-					if(num.getValue() % ((Number)list.get(i)).getValue() == 0) {
-						num.setPrime(0);
-						test++;
-					}
-				}
-				i++;
-			}
-			
-		}		
-	
-		 for(int z = 0; z < list.size(); z++) {
-			 Number num = (Number)list.get(z);
-			 if(num.getPrime() == -1) {
-				 num.setPrime(1);;
-			 }
-		 }
-		 return list;
-	}
-	
-	public static LinkedList linkedListGenerator(int limit) {
-		LinkedList  list = new LinkedList();
-		for(int i = 2; i < limit + 1; i++) {
-			Number num = new Number(i);
-			list.add(num);
-		}
-		return list;
 	}
 }
